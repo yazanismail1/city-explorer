@@ -42,3 +42,15 @@ To build such web app follow the following steps:
 ## Credit and Collaborations
 
 1. Shoutout to [Ihab Abbas](https://github.com/ihababbas) aka partner. We designed the working methodology and flow of data.
+
+## Time Estimates
+
+**Name of feature :** Input form, GET request
+
+**Estimate of time needed to complete :** 3 hours
+
+**Start time :** 1:30pm
+
+**Finish time :** 7:30pm
+
+**Actual time needed to complete :** 6 hours
