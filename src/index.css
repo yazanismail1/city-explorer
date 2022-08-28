@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(45deg,#76BA99, #CED89E);
 }
 
 code {
@@ -12,6 +13,6 @@ code {
     monospace;
 }
 
-div {
+/* div {
   background-image: linear-gradient(45deg,#76BA99, #CED89E);
-}
+} */

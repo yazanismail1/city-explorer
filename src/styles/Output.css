@@ -1,0 +1,14 @@
+.output-data {
+    padding-top: 25px;
+    padding-left: 50px;
+}
+
+span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+img {
+    border: 3px solid #FFDCAE;
+    border-radius: 15px;
+}
