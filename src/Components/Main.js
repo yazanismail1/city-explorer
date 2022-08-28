@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Output extends React.Component {
+class Main extends React.Component {
 
     render() {
         return (
@@ -12,4 +12,4 @@ class Output extends React.Component {
     } 
 }
 
-export default Output;
+export default Main;
