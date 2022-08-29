@@ -58,8 +58,9 @@ class SearchForm extends React.Component {
         
       })
     }
-    const URL_HOST = `${process.env.REACT_APP_URL}/weather?name=${userInput}&lon=${fetchData.data[0].lon}&lat=${fetchData.data[0].lat}`;
+    const URL_HOST = `https://city-explorer-server-lab-07.herokuapp.com/weather?name=${userInput}&lon=${fetchData.data[0].lon}&lat=${fetchData.data[0].lat}`;
     const weatherData = await axios.get(URL_HOST);
+    console.log(URL_HOST)
     try
     {
     this.setState({
