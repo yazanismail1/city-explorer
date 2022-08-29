@@ -37,13 +37,31 @@ To build such web app follow the following steps:
 
 ## Methodology and Working Flow
 
+Lab-07
+
+![Methodology and Work Flow](./updatedworkflow.png)
+
+Lab-06
+
 ![Methodology and Work Flow](./workFlow.png)
 
 ## Credit and Collaborations
 
 1. Shoutout to [Ihab Abbas](https://github.com/ihababbas) aka partner. We designed the working methodology and flow of data.
 
-## Time Estimates
+## Time Estimates-Lab07
+
+**Name of feature :** Adding new API
+
+**Estimate of time needed to complete :** 2 hours
+
+**Start time :** 1:00am
+
+**Finish time :** 2:13am
+
+**Actual time needed to complete :** 1.13 hours
+
+## Time Estimates-Lab06
 
 **Name of feature :** Input form, GET request
 
