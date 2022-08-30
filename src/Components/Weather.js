@@ -1,42 +1,35 @@
 import React from "react";
-import Card from 'react-bootstrap/Card';
+import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Output.css";
-
+import "../styles/Weather.css";
 
 class Weather extends React.Component {
-    render() {
+  render() {
+    return (
+      <div className="weather-cards">
+      {this.props.weatherData.map(item => {
       return (
         <div className="output-data">
-          <Card style={{ width: "700px", height: "fit-content"}}>
+          <Card style={{ width: "700px", height: "fit-content" }}>
             <Card.Body>
               <Card.Text>
-              
-              <p>
-             <span>Date: </span>{this.props.weatherData1}
-          </p>
-          <p>
-          <span>Description: </span>{this.props.weatherDescription1}
-          </p>
-          <p>
-          <span>Date: </span>{this.props.weatherData2}
-          </p>
-          <p>
-          <span>Description: </span>{this.props.weatherDescription2}
-          </p>
-          <p>
-          <span>Date: </span>{this.props.weatherData3}
-          </p>
-          <p>
-          <span>Description: </span>{this.props.weatherDescription3}
-          </p>
-          
+                <p>
+                  <span>Date: </span>{item.datetime}
+                </p>
+                <p>
+                  <span>Description: </span>low of {item.low_temp}, high of {item.max_temp} with {item.description} 
+                </p>
               </Card.Text>
             </Card.Body>
           </Card>
         </div>
-      );
-    }
+      )
+    })
   }
-  
-  export default Weather;
+  <br></br>
+  </div>
+)}
+}
+
+export default Weather;

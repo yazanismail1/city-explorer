@@ -22,3 +22,9 @@
     border: none;
     color: black;
 }
+
+.row {
+    display:flex;
+    justify-content: center;
+    gap: 10px;
+}
