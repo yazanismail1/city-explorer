@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.background-footer {
+.background-header {
     position: relative;
     background-color: transparent;
     filter:blur(15px);
@@ -17,4 +17,6 @@
 
 .header h1 {
     z-index: 1;
+    position : relative;
+    top :-75px;
 }

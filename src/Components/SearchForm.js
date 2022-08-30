@@ -7,6 +7,8 @@ import "../styles/SearchForm.css";
 import Output from "./Output";
 import axios from "axios";
 import Weather from "./Weather";
+import Movie from "./Movie"
+import Row from 'react-bootstrap/Row';
 // require('dotenv').config();
 
 const TOKEN = "pk.5b023d19d17a1fb480f7f5c4e20e6397";
@@ -21,12 +23,8 @@ class SearchForm extends React.Component {
       lat : "",
       mapFlag : false,
       errFlag : false,
-      weatherData1: "",
-      weatherData2: "",
-      weatherData3: "",
-      weatherDescription1: "",
-      weatherDescription2: "",
-      weatherDescription3: "",
+      weatherData: [],
+      movieData: [],
     }
   }
 
@@ -43,12 +41,7 @@ class SearchForm extends React.Component {
         cityName : fetchData.data[0].display_name,
         lon : fetchData.data[0].lon,
         lat : fetchData.data[0].lat,
-        weatherData1: "",
-        weatherData2: "",
-        weatherData3: "",
-        weatherDescription1: "",
-        weatherDescription2: "",
-        weatherDescription3: "",
+        weatherData: [],
       })
     }
     catch {
@@ -58,9 +51,9 @@ class SearchForm extends React.Component {
         
       })
     }
-    const URL_HOST = `https://city-explorer-server-lab-07.herokuapp.com/weather?name=${userInput}&lon=${fetchData.data[0].lon}&lat=${fetchData.data[0].lat}`;
+    const URL_HOST = `https://yazan-city-explorer.herokuapp.com/weatherData?lon=${fetchData.data[0].lon}&lat=${fetchData.data[0].lat}`;
     const weatherData = await axios.get(URL_HOST);
-    console.log(URL_HOST)
+
     try
     {
     this.setState({
@@ -69,12 +62,7 @@ class SearchForm extends React.Component {
       cityName : fetchData.data[0].display_name,
       lon : fetchData.data[0].lon,
       lat : fetchData.data[0].lat,
-      weatherData1: weatherData.data[0].date,
-      weatherData2: weatherData.data[1].date,
-      weatherData3: weatherData.data[2].date,
-      weatherDescription1: weatherData.data[0].description,
-      weatherDescription2: weatherData.data[1].description,
-      weatherDescription3: weatherData.data[2].description,
+      weatherData: weatherData.data,
     })
   }
   catch {
@@ -82,16 +70,25 @@ class SearchForm extends React.Component {
       cityName : fetchData.data[0].display_name,
       lon : fetchData.data[0].lon,
       lat : fetchData.data[0].lat,
-      weatherData1: "",
-      weatherData2: "",
-      weatherData3: "",
-      weatherDescription1: "",
-      weatherDescription2: "",
-      weatherDescription3: "",
+      weatherData: [],
+      errFlag : true,
+    })
+  }
+  const Movie_URL = `https://yazan-city-explorer.herokuapp.com/movie?cityName=${userInput}`;
+    const movierData = await axios.get(Movie_URL);
+    console.log(Movie_URL.data)
+    try
+    {
+    this.setState({
+      movieData: movierData.data,
+    })
+  }
+  catch {
+    this.setState({
+      movieData: [],
     })
   }
   }
-
 
   render() {
     return (
@@ -123,14 +120,13 @@ class SearchForm extends React.Component {
         errFlag={this.state.errFlag}
          />
          <Weather 
-         weatherData1={this.state.weatherData1}
-         weatherData2={this.state.weatherData2}
-         weatherData3={this.state.weatherData3}
-         weatherDescription1={this.state.weatherDescription1}
-         weatherDescription2={this.state.weatherDescription2}
-         weatherDescription3={this.state.weatherDescription3} 
+         weatherData={this.state.weatherData}
           />
-
+          <Row xs={1} md={2} className="g-6 row">
+          <Movie 
+            movieData={this.state.movieData}
+          />
+          </Row>
         </>
     );
   }
