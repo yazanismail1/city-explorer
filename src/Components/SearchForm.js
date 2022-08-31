@@ -9,9 +9,7 @@ import axios from "axios";
 import Weather from "./Weather";
 import Movies from "./Movies"
 import Row from 'react-bootstrap/Row';
-// require('dotenv').config();
 
-const TOKEN = "pk.5b023d19d17a1fb480f7f5c4e20e6397";
 
 class SearchForm extends React.Component {
 
@@ -31,7 +29,7 @@ class SearchForm extends React.Component {
   getData = async (e) => {
     e.preventDefault();
     const userInput = e.target.cityName.value;
-    const URL = `https://eu1.locationiq.com/v1/search?key=${TOKEN}&q=${userInput}&format=json`
+    const URL = `https://eu1.locationiq.com/v1/search?key=${process.env.REACT_APP_KEY}&q=${userInput}&format=json`
     try
     {
       const fetchData = await axios.get(URL);
@@ -58,7 +56,7 @@ class SearchForm extends React.Component {
   }
 
   getWeatherData = async (data) => {
-    const URL_HOST = `http://localhost:3498/weatherData?lon=${data.lon}&lat=${data.lat}`;
+    const URL_HOST = `${process.env.REACT_APP_SERVER_LINK}weatherData?lon=${data.lon}&lat=${data.lat}`;
     try
     {
     const weatherData = await axios.get(URL_HOST);
@@ -75,7 +73,7 @@ class SearchForm extends React.Component {
   }
 
   getMovieData = async (data) => {
-    const Movie_URL = `http://localhost:3498/movie?cityName=${data}`;
+    const Movie_URL = `${process.env.REACT_APP_SERVER_LINK}movie?cityName=${data}`;
     try
     {
       const movierData = await axios.get(Movie_URL);
@@ -117,7 +115,6 @@ class SearchForm extends React.Component {
         cityName={this.state.cityName}
         lon={this.state.lon}
         lat={this.state.lat}
-        token={TOKEN}
         mapFlag={this.state.mapFlag}
         errFlag={this.state.errFlag}
          />
