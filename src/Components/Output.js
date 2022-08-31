@@ -25,7 +25,7 @@ class Output extends React.Component {
         {this.props.mapFlag && (
           <Card.Img
             src={`https://maps.locationiq.com/v3/staticmap?key=${
-              this.props.token
+              process.env.REACT_APP_KEY
             }&center=${this.props.lat},${
               this.props.lon
             }&zoom=${18}&size=610x300`}
