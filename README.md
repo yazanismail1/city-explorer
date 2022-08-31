@@ -3,7 +3,7 @@
 Deployed Site : [City Explore](https://eloquent-arithmetic-06dad7.netlify.app/)
 
 **Author :** Yazan Alfarra  
-**Version :** 2.0.0
+**Version :** 3.0.0
 
 ## Overview
 
@@ -35,10 +35,15 @@ To build such web app follow the following steps:
 
 ## Changing Log
 
+31-08-2022 10:00pm - Application now is capable of sending a GET request and display the results on screen on click and modularized.
 30-08-2022 10:00pm - Application now is capable of sending a GET request and display the results on screen on click.
 28-08-2022 7:30pm - Application now is capable of sending a GET request and display the results on screen on click.
 
 ## Methodology and Working Flow
+
+Lab-09
+
+![Methodology and Work Flow](./lab09.png)
 
 Lab-08
 
@@ -55,6 +60,18 @@ Lab-06
 ## Credit and Collaborations
 
 1. Shoutout to [Ihab Abbas](https://github.com/ihababbas) aka partner. We designed the working methodology and flow of data.
+
+## Time Estimates-Lab09
+  
+**Name of feature :** Modularizing
+
+**Estimate of time needed to complete :** 2 hours
+
+**Start time :** 1:30pm
+
+**Finish time :** 3:00pm
+
+**Actual time needed to complete :** 1 hour
 
 ## Time Estimates-Lab08
   

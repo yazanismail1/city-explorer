@@ -5,29 +5,23 @@ import "../styles/Movie.css";
 
 class Movie extends React.Component {
   render() {
-    return (
-      <>
-        {this.props.movieData.map((item) => {
           return (
             
               <Card className="card" style={{ width: "18rem"  }}>
-                <Card.Img className="img" variant="top" src={item.poster_path} />
+                <Card.Img className="img" variant="top" src={this.props.item.poster_path} />
                 <Card.Body>
-                  <Card.Title>{item.title}</Card.Title>
+                  <Card.Title>{this.props.item.title}</Card.Title>
                   <Card.Text>
-                    <p><span>Overview:</span> {item.overview}</p>
-                    <p><span>Release Date:</span>  {item.release_date}</p>
-                    <p><span>Average Vote:</span>  {item.vote_average}</p>
-                    <p><span>Total Votes:</span>  {item.vote_count}</p>
-                    <p><span>Popularity:</span>  {item.popularity}</p>
+                    <p><span>Overview:</span> {this.props.item.overview}</p>
+                    <p><span>Release Date:</span>  {this.props.item.release_date}</p>
+                    <p><span>Average Vote:</span>  {this.props.item.vote_average}</p>
+                    <p><span>Total Votes:</span>  {this.props.item.vote_count}</p>
+                    <p><span>Popularity:</span>  {this.props.item.popularity}</p>
                   </Card.Text>
                 </Card.Body>
               </Card>
               
           );
-        })}
-      </>
-    );
   }
 }
 
