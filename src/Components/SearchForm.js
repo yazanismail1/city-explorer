@@ -7,7 +7,7 @@ import "../styles/SearchForm.css";
 import Output from "./Output";
 import axios from "axios";
 import Weather from "./Weather";
-import Movie from "./Movie"
+import Movies from "./Movies"
 import Row from 'react-bootstrap/Row';
 // require('dotenv').config();
 
@@ -24,7 +24,7 @@ class SearchForm extends React.Component {
       mapFlag : false,
       errFlag : false,
       weatherData: [],
-      movieData: [],
+      movieData: []
     }
   }
 
@@ -32,63 +32,64 @@ class SearchForm extends React.Component {
     e.preventDefault();
     const userInput = e.target.cityName.value;
     const URL = `https://eu1.locationiq.com/v1/search?key=${TOKEN}&q=${userInput}&format=json`
-    const fetchData = await axios.get(URL);
     try
     {
+      const fetchData = await axios.get(URL);
+      this.getWeatherData(fetchData.data[0]);
+      this.getMovieData(userInput);
       this.setState({
         mapFlag : true,
         errFlag : false,
         cityName : fetchData.data[0].display_name,
         lon : fetchData.data[0].lon,
-        lat : fetchData.data[0].lat,
+        lat : fetchData.data[0].lat
+      })}
+    catch {
+      this.setState({
+        cityName : "",
+        lon : "",
+        lat : "",
+        errFlag : true,
+        mapFlag : false,
         weatherData: [],
+        movieData: []
+      })}
+    
+  }
+
+  getWeatherData = async (data) => {
+    const URL_HOST = `http://localhost:3498/weatherData?lon=${data.lon}&lat=${data.lat}`;
+    try
+    {
+    const weatherData = await axios.get(URL_HOST);
+    this.setState({
+      cityName : data.display_name,
+      lon : data.lon,
+      lat : data.lat,
+      weatherData: weatherData.data,
+    })}
+    catch {
+    this.setState({
+      weatherData: []
+      })}
+  }
+
+  getMovieData = async (data) => {
+    const Movie_URL = `http://localhost:3498/movie?cityName=${data}`;
+    try
+    {
+      const movierData = await axios.get(Movie_URL);
+      this.setState({
+        movieData: movierData.data,
       })
     }
     catch {
       this.setState({
-        errFlag : true,
-        mapFlag : false,
-        
+        movieData: []
       })
     }
-    const URL_HOST = `https://yazan-city-explorer.herokuapp.com/weatherData?lon=${fetchData.data[0].lon}&lat=${fetchData.data[0].lat}`;
-    const weatherData = await axios.get(URL_HOST);
-
-    try
-    {
-    this.setState({
-      mapFlag : true,
-      errFlag : false,
-      cityName : fetchData.data[0].display_name,
-      lon : fetchData.data[0].lon,
-      lat : fetchData.data[0].lat,
-      weatherData: weatherData.data,
-    })
   }
-  catch {
-    this.setState({
-      cityName : fetchData.data[0].display_name,
-      lon : fetchData.data[0].lon,
-      lat : fetchData.data[0].lat,
-      weatherData: [],
-      errFlag : true,
-    })
-  }
-  const Movie_URL = `https://yazan-city-explorer.herokuapp.com/movie?cityName=${userInput}`;
-    const movierData = await axios.get(Movie_URL);
-    console.log(Movie_URL.data)
-    try
-    {
-    this.setState({
-      movieData: movierData.data,
-    })
-  }
-  catch {
-    this.setState({
-      movieData: [],
-    })
-  }
-  }
+  
 
   render() {
     return (
@@ -111,6 +112,7 @@ class SearchForm extends React.Component {
           </div>
       </div>
         </Form>
+
         <Output 
         cityName={this.state.cityName}
         lon={this.state.lon}
@@ -123,7 +125,7 @@ class SearchForm extends React.Component {
          weatherData={this.state.weatherData}
           />
           <Row xs={1} md={2} className="g-6 row">
-          <Movie 
+          <Movies 
             movieData={this.state.movieData}
           />
           </Row>
